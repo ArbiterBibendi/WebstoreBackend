@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Shirt 1",
+        "count": 55,
+        "price": 599
+    },
+    {
+        "name": "Shirt 2",
+        "count": 50,
+        "price": 599
+    },
+    {
+        "name": "Pants 1",
+        "count": 45,
+        "price": 1599
+    },
+    {
+        "name": "Pants 2",
+        "count": 5,
+        "price": 1499
+    }
+]
