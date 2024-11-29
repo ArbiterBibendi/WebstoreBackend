@@ -4,19 +4,18 @@ const testData = require("../database/test_data.json");
 const inventorySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   count: {
     type: Number,
-    required: true
+    required: true,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
 });
 const Product = mongoose.model("Product", inventorySchema);
-
 
 const main = async () => {
   try {
@@ -39,36 +38,46 @@ const resetDb = async () => {
 
 const getProducts = async () => {
   try {
-    const products = await Product.find({}) || {};
+    const products = (await Product.find({})) || {};
     return products;
   } catch (e) {
     console.error(e);
     throw e;
     return {};
   }
-}
+};
+const getProduct = async (id) => {
+  try {
+    const product = await Product.findById(id);
+    return product;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
 const addProducts = async (products) => {
   try {
-    const result = await Product.insertMany(products, {rawResult: true});
+    const result = await Product.insertMany(products, { rawResult: true });
     return result;
   } catch (e) {
     console.error(e);
     throw e;
   }
-}
+};
 const addProduct = async (product) => {
-  try {
-    const document = new Product(product);
-    const result = await document.save();
-    return result;
-  } catch (e) {
-    console.error(e)
-    throw e;
-  }
-}
+  const document = new Product(product);
+  const result = await document.save();
+  return result;
+};
+const updateProduct = async (product) => {
+  const result = await Product.findByIdAndUpdate(product._id, product);
+  return result;
+};
 
 main();
 
 module.exports.getProducts = getProducts;
+module.exports.getProduct = getProduct;
 module.exports.addProducts = addProducts;
 module.exports.addProduct = addProduct;
+module.exports.updateProduct = updateProduct;
