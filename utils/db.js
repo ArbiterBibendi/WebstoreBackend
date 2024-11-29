@@ -73,7 +73,10 @@ const updateProduct = async (product) => {
   const result = await Product.findByIdAndUpdate(product._id, product);
   return result;
 };
-
+const deleteProduct = async (productId) => {
+  const result = await Product.findByIdAndDelete(productId);
+  return result;
+}
 main();
 
 module.exports.getProducts = getProducts;
@@ -81,3 +84,5 @@ module.exports.getProduct = getProduct;
 module.exports.addProducts = addProducts;
 module.exports.addProduct = addProduct;
 module.exports.updateProduct = updateProduct;
+module.exports.deleteProduct = deleteProduct;
+
