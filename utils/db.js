@@ -1,20 +1,7 @@
 const mongoose = require("mongoose");
 const testData = require("../database/test_data.json");
 
-const inventorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  count: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-});
+const inventorySchema = require('../schemas');
 const Product = mongoose.model("Product", inventorySchema);
 
 const main = async () => {
